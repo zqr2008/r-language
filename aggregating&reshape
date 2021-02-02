@@ -1,4 +1,6 @@
 #aggregating data
+
+
 #aggregate(x,by,FUN) x=dataset,by= a list of variables that will be crossed to form the new observations,FUN is the scalar function used to calculate summary
 statistics that will make up the new observation values
 
@@ -22,5 +24,30 @@ Group.1 Group.2 mpg cyl disp hp drat wt qsec vs am gear carb
 
 #When you’re using the aggregate() function , the by variables must be in a list (even if there’s only one). You can declare a custom name for the groups from
 within the list, for instance, using by=list(Group.cyl=cyl, Group.gears=gear).
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#The reshape package(make sure intalled reshape package)
 
-#The reshape package
+
+#restructure it into a format where each measured variable is in its own row, along with the ID variables needed to uniquely identify it.
+
+The original dataset (mydata)
+ID Time X1 X2
+1   1   5  6
+1   2   3  5
+2   1   6  1
+2   2   2  4
+
+library(reshape)
+md <- melt(mydata, id=(c("id", "time")))
+
+#output shows each variable has its own colume
+The melted dataset
+ID Time Variable Value
+1   1     X1      5
+1   2     X1      3
+2   1     X1      6
+2   2     X1      2
+1   1     X2      6
+1   2     X2      5
+2   1     X2      1
+2   2     X2      4
