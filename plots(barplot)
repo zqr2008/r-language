@@ -1,0 +1,12 @@
+#bar plots
+
+#Bar plots display the distribution (frequencies) of a categorical variable through vertical
+or horizontal bars:
+barplot(height)
+
+#Simple bar plots
+#main is the biggest title, xlab is the label for x axis, ylab is the label for y axis
+barplot(counts,main="Simple Bar Plot", xlab="Improvement", ylab="Frequency")
+
+#
+barplot(counts,main="Horizontal Bar Plot",xlab="Frequency", ylab="Improvement",horiz=TRUE)
