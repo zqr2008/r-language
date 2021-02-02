@@ -1,0 +1,2 @@
+#change to tuna mirror
+options(repos=structure(c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))) 
