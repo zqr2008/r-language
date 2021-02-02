@@ -8,5 +8,26 @@ barplot(height)
 #main is the biggest title, xlab is the label for x axis, ylab is the label for y axis
 barplot(counts,main="Simple Bar Plot", xlab="Improvement", ylab="Frequency")
 
-#
+#produce  horizontal barplot
 barplot(counts,main="Horizontal Bar Plot",xlab="Frequency", ylab="Improvement",horiz=TRUE)
+
+
+#If the target is a matrix rather than a vector, the resulting graph will be a stacked or grouped bar plot.
+
+
+
+#Stacked bar plot
+barplot(counts,
+main="Stacked Bar Plot",
+xlab="Treatment", ylab="Frequency",
+col=c("red", "yellow","green"),
+legend=rownames(counts))
+
+#If beside=FALSE (the default), then each column of the matrix produces a bar in the plot, with the values in the column giving the heights of stacked
+“sub-bars.” If beside=TRUE, each column of the matrix represents a group, and the values in each column are juxtaposed rather than stacked.
+#Grouped bar plots
+barplot(counts,
+main="Grouped Bar Plot",
+xlab="Treatment", ylab="Frequency",
+col=c("red", "yellow", "green"),
+legend=rownames(counts), beside=TRUE)
