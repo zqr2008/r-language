@@ -28,7 +28,7 @@ within the list, for instance, using by=list(Group.cyl=cyl, Group.gears=gear).
 #The reshape package(make sure intalled reshape package)
 
 
-#restructure it into a format where each measured variable is in its own row, along with the ID variables needed to uniquely identify it.
+#MELT: restructure it into a format where each measured variable is in its own row, along with the ID variables needed to uniquely identify it.
 
 The original dataset (mydata)
 ID Time X1 X2
@@ -51,3 +51,11 @@ ID Time Variable Value
 1   2     X2      5
 2   1     X2      1
 2   2     X2      4
+
+
+#CAST: The cast() function starts with melted data and reshapes it using a formula that you provide and an (optional) function used to aggregate the data.
+
+#md=melted data, formula=describes the desired end result, FUN(optional)= aggregating function. 
+#The formula takes the form: rowvar1 + rowvar2 + … ~ colvar1 + colvar2 + …(rowvar is desired demonstrate way,colvar is demonstrated content,"~" )
+
+newdata <- cast(md, formula, FUN)
