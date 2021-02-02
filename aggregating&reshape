@@ -56,6 +56,6 @@ ID Time Variable Value
 #CAST: The cast() function starts with melted data and reshapes it using a formula that you provide and an (optional) function used to aggregate the data.
 
 #md=melted data, formula=describes the desired end result, FUN(optional)= aggregating function. 
-#The formula takes the form: rowvar1 + rowvar2 + … ~ colvar1 + colvar2 + …(rowvar is desired demonstrate way,colvar is demonstrated content,"~" )
+#The formula takes the form: rowvar1 + rowvar2 + … ~ colvar1 + colvar2 + …(rowvar is desired demonstrate row,colvar is demonstrated columns,"~" )
 
 newdata <- cast(md, formula, FUN)
