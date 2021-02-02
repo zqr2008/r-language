@@ -1,2 +1,4 @@
 # r-language
-basics
+basics of r language contains:
+functions of r
+plots of r
