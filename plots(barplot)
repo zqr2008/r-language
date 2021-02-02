@@ -1,10 +1,9 @@
 #bar plots
 
-#Bar plots display the distribution (frequencies) of a categorical variable through vertical
-or horizontal bars:
+#Bar plots display the distribution (frequencies) of a categorical variable through vertical or horizontal bars:
 barplot(height)
 
-#Simple bar plots
+##Simple bar plots
 #main is the biggest title, xlab is the label for x axis, ylab is the label for y axis
 barplot(counts,main="Simple Bar Plot", xlab="Improvement", ylab="Frequency")
 
@@ -16,7 +15,7 @@ barplot(counts,main="Horizontal Bar Plot",xlab="Frequency", ylab="Improvement",h
 
 
 
-#Stacked bar plot
+##Stacked bar plot
 barplot(counts,
 main="Stacked Bar Plot",
 xlab="Treatment", ylab="Frequency",
@@ -25,9 +24,30 @@ legend=rownames(counts))
 
 #If beside=FALSE (the default), then each column of the matrix produces a bar in the plot, with the values in the column giving the heights of stacked
 “sub-bars.” If beside=TRUE, each column of the matrix represents a group, and the values in each column are juxtaposed rather than stacked.
-#Grouped bar plots
+
+##Grouped bar plots
 barplot(counts,
 main="Grouped Bar Plot",
 xlab="Treatment", ylab="Frequency",
 col=c("red", "yellow", "green"),
 legend=rownames(counts), beside=TRUE)
+
+##Mean bar plots
+
+> states <- data.frame(state.region, state.x77)
+> means <- aggregate(states$Illiteracy, by=list(state.region), FUN=mean)
+> means
+  Group.1                     x
+1 Northeast                  1.00
+2 South                      1.74
+3 North Central              0.70
+4 West 1.02
+> means <- means[order(means$x),]
+> means
+Group.1 x q
+3 North Central 0.70
+1 Northeast 1.00
+4 West 1.02
+2 South 1.74
+> barplot(means$x, names.arg=means$Group.1)
+> title("Mean Illiteracy Rate")
