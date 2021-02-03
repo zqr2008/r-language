@@ -49,5 +49,10 @@ Group.1 x q
 1 Northeast 1.00
 4 West 1.02
 2 South 1.74
-> barplot(means$x, names.arg=means$Group.1)
+> barplot(means$x, names.arg=means$Group.1) #The reason that barplot(means) is not applicable is that barplot only receive vector or matrix
 > title("Mean Illiteracy Rate")
+
+
+##Tweaking bar plots
+
+
