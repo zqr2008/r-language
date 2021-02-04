@@ -68,3 +68,14 @@ main="Treatment Outcome",
 horiz=TRUE, cex.names=0.8,
 names.arg=c("No Improvement", "Some Improvement",
 "Marked Improvement"))
+
+
+##spinogram
+#a specialized version of barplot,barplot is rescaled that the height is 1
+#use spine() instead of barplot()
+
+library(vcd)
+attach(Arthritis)
+counts <- table(Treatment, Improved)
+spine(counts, main="Spinogram Example")
+detach(Arthritis)
