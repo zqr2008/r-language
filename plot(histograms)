@@ -1,0 +1,40 @@
+#x=numeric vector of values
+#The option freq=FALSE creates a plot based on probability densities rather than frequencies. 
+#The breaks option controls the number of bins. The default produces equally spaced breaks when defining the cells of the histogram.
+
+#Simple histogram
+hist(x)
+
+#With specified bins and color
+hist(mtcars$mpg,
+breaks=12, 
+col="red",
+xlab="Miles Per Gallon",
+main="Colored histogram with 12 bins")
+
+#With rug plot and frame
+#rug(jitter()) provides a smoother description of the distribution of scores
+#jitter(mtcars$mgp)这个函数是把相同的数据打散，这样在后面的求轴密度的时候就可以更准确的描述数据的分布
+hist(mtcars$mpg,
+freq=FALSE, 
+breaks=12,
+col="red",
+xlab="Miles Per Gallon",
+main="Histogram, rug plot, density curve")
+rug(jitter(mtcars$mpg))
+lines(density(mtcars$mpg), col="blue", lwd=2)
+
+#With normal curve
+#The code for superimposing the normal curve comes from a suggestion posted to the R-help mailing list by Peter Dalgaard. The surrounding
+box is produced by the box() function
+x <- mtcars$mpg 
+h<-hist(x,
+breaks=12,
+col="red",
+xlab="Miles Per Gallon",
+main="Histogram with normal curve and box")
+xfit<-seq(min(x), max(x), length=40)
+yfit<-dnorm(xfit, mean=mean(x), sd=sd(x))
+yfit <- yfit*diff(h$mids[1:2])*length(x)
+lines(xfit, yfit, col="blue", lwd=2)
+box()
