@@ -8,6 +8,7 @@ boxplot(mtcars$mpg, main="Box plot", ylab="Miles per Gallon")
 #where formula is a formula and dataframe denotes the data frame (or list) providing the data
 #Adding the option varwidth=TRUE will make the box plot widths proportional to the square root of their sample sizes. Add horizontal=TRUE to reverse the axis
 orientation.
+#adding notch=TRUE, you get notched box plots
 
 
 boxplot(formula, data=dataframe)
@@ -18,3 +19,18 @@ boxplot(mpg ~ cyl, data=mtcars,
 main="Car Mileage Data",
 xlab="Number of Cylinders",
 ylab="Miles Per Gallon")
+
+
+
+mtcars$cyl.f <- factor(mtcars$cyl,
+levels=c(4,6,8),
+labels=c("4","6","8"))
+mtcars$am.f <- factor(mtcars$am,
+levels=c(0,1),
+labels=c("auto", "standard"))
+boxplot(mpg ~ am.f *cyl.f,
+data=mtcars,
+varwidth=TRUE,
+col=c("gold","darkgreen"),
+main="MPG Distribution by Auto Type",
+xlab="Auto Type")
