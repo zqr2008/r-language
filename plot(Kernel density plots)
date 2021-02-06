@@ -1,0 +1,14 @@
+#Kernel density plots
+#general kernel density plots can be an effective way to view the distribution of a continuous variable.
+#x=numeric vector. 
+plot(density(x))
+
+
+#The polygon() function draws a polygon whose vertices are given by x and y (provided by the density() function in this case).
+par(mfrow=c(2,1))
+d <- density(mtcars$mpg)
+plot(d)
+d <- density(mtcars$mpg)
+plot(d, main="Kernel Density of Miles Per Gallon")
+polygon(d, col="red", border="blue")
+rug(mtcars$mpg, col="brown")
