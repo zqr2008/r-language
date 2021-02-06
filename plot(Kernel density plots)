@@ -14,4 +14,5 @@ polygon(d, col="red", border="blue")
 rug(mtcars$mpg, col="brown")
 
 #The sm.density.compare() function in the sm package allows you to superimpose the kernel density plots of two or more groups.
+#where x is a numeric vector and factor is a grouping variable
 sm.density.compare(x, factor)
