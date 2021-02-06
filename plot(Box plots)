@@ -1,0 +1,20 @@
+#box-and-whiskers
+#By default, each whisker extends to the most extreme data point, which is no more than the 1.5 times the interquartile range for the box. Values outside this range are
+depicted as dots.
+
+boxplot(mtcars$mpg, main="Box plot", ylab="Miles per Gallon")
+
+#Box plots can be created for variables by group.
+#where formula is a formula and dataframe denotes the data frame (or list) providing the data
+#Adding the option varwidth=TRUE will make the box plot widths proportional to the square root of their sample sizes. Add horizontal=TRUE to reverse the axis
+orientation.
+
+
+boxplot(formula, data=dataframe)
+
+
+#cyl is a category that generate different kinds of mpg
+boxplot(mpg ~ cyl, data=mtcars,
+main="Car Mileage Data",
+xlab="Number of Cylinders",
+ylab="Miles Per Gallon")
