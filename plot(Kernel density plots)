@@ -16,3 +16,22 @@ rug(mtcars$mpg, col="brown")
 #The sm.density.compare() function in the sm package allows you to superimpose the kernel density plots of two or more groups.
 #where x is a numeric vector and factor is a grouping variable
 sm.density.compare(x, factor)
+
+
+#cyl is a numeric variable coded 4, 6, or 8. cyl is transformed into a factor,
+#The sm.density.compare() function creates the plot
+#a legend is added to the plot via the legend() function . The locator(1) option indicates that you’ll place the legend interactively by clicking on the graph where you
+want the legend to appear. The second option provides a character vector of the labels.The third option assigns a color from the vector colfill to each level of cyl.f. The
+results are displayed in figure 6.10.
+
+par(lwd=2)
+library(sm) 
+attach(mtcars)
+cyl.f <- factor(cyl, levels= c(4,6,8),
+labels = c("4 cylinder", "6 cylinder", 
+"8 cylinder"))
+sm.density.compare(mpg, cyl, xlab="Miles Per Gallon") 
+title(main="MPG Distribution by Car Cylinders")
+colfill<-c(2:(1+length(levels(cyl.f))))
+legend(locator(1), levels(cyl.f), fill=colfill) 
+detach(mtcars)
