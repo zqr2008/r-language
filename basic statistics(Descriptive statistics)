@@ -10,3 +10,22 @@
 #where x is your data frame (or matrix) and FUN is an arbitrary function. If options are present, they’re passed to FUN. Typical functions that you can plug in here are mean
 #sd, var, min, max, median, length, range, and quantile. The function fivenum() returns Tukey’s five-number summary (minimum, lower-hinge, median, upper-hinge,and maximum).
 sapply(x, FUN, options)
+
+> mystats <- function(x, na.omit=FALSE){
+if (na.omit)
+x <- x[!is.na(x)]
+m <- mean(x)
+n <- length(x)
+s <- sd(x)
+skew <- sum((x-m)^3/s^3)/n
+kurt <- sum((x-m)^4/s^4)/n - 3
+return(c(n=n, mean=m, stdev=s, skew=skew, kurtosis=kurt))
+}
+> sapply(mtcars[vars], mystats)
+
+#The describe() function in the Hmisc package returns the number of variables and observations, the number of missing and unique values, the mean, quantiles, and
+the five highest and lowest values.
+> library(Hmisc)
+> describe(mtcars[vars])
+
+
