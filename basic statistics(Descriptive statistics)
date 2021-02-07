@@ -29,3 +29,33 @@ the five highest and lowest values.
 > describe(mtcars[vars])
 
 
+#The pastecs package includes a function named stat.desc()
+#if norm=TRUE (not the default), normal distribution statistics are returned, including skewness and kurtosis (and their statistical significance),
+and the Shapiro–Wilk test of normality. A p-value option is used to calculate the confidence interval for the mean (.95 by default).
+stat.desc(x, basic=TRUE, desc=TRUE, norm=FALSE, p=0.95)
+> library(pastecs)
+> stat.desc(mtcars[vars])
+
+
+#the psych package also has a function called describe()
+> library(psych)
+Attaching package: 'psych'
+The following object(s) are masked from package:Hmisc :
+describe
+describe(mtcars[vars])
+
+#Descriptive statistics by group using aggregate()
+#divide the total sample into interested groups
+#If you had used list(mtcars$am), the am column would have been labeled Group.1 rather than am.
+#If you have more than one grouping variable, you can use code like by=list(name1=groupvar1, name2=groupvar2, … , groupvarN).
+> aggregate(mtcars[vars], by=list(am=mtcars$am), mean)
+> aggregate(mtcars[vars], by=list(am=mtcars$am), sd)
+
+
+#Descriptive statistics by group using by()
+> dstats <- function(x)(c(mean=mean(x), sd=sd(x)))
+> by(mtcars[vars], mtcars$am, dstats)
+
+#Summary statistics by group using summaryBy() in the doBy package
+> library(doBy)
+> summaryBy(mpg+hp+wt~am, data=mtcars, FUN=mystats)
