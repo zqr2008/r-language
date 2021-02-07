@@ -11,6 +11,8 @@ xlab="Miles Per Gallon")
 
 #the data frame mtcars is sorted by mpg (lowest to highest) and saved as data frame x.
 #The numeric vector cyl is transformed into a factor
+#A character vector(color) is added to data frame x and contains the values "red","blue", or "dark green"
+
 x <- mtcars[order(mtcars$mpg),]
 x$cyl <- factor(x$cyl)
 x$color[x$cyl==4] <- "red"
