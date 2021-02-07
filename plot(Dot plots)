@@ -1,0 +1,27 @@
+#a method of plotting a large number of labeled values on a simple horizontal scale.
+
+
+dotchart(x, labels=)
+
+#x=numeric vector,labels specifies a vector that labels each point. 
+dotchart(mtcars$mpg, labels=row.names(mtcars), cex=.7,
+main="Gas Mileage for Car Models",
+xlab="Miles Per Gallon")
+
+
+#the data frame mtcars is sorted by mpg (lowest to highest) and saved as data frame x.
+#The numeric vector cyl is transformed into a factor
+x <- mtcars[order(mtcars$mpg),]
+x$cyl <- factor(x$cyl)
+x$color[x$cyl==4] <- "red"
+x$color[x$cyl==6] <- "blue"
+x$color[x$cyl==8] <- "darkgreen"
+dotchart(x$mpg,
+labels = row.names(x),
+cex=.7,
+groups = x$cyl,
+gcolor = "black",
+color = x$color,
+pch=19,
+main = "Gas Mileage for Car Models\ngrouped by cylinder",
+xlab = "Miles Per Gallon")
