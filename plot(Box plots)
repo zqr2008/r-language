@@ -21,7 +21,9 @@ xlab="Number of Cylinders",
 ylab="Miles Per Gallon")
 
 
-
+#Create factor for # of cylinders
+#Create factor for transmission type
+#Generate box plot for each combination of cylinders and am type
 mtcars$cyl.f <- factor(mtcars$cyl,
 levels=c(4,6,8),
 labels=c("4","6","8"))
