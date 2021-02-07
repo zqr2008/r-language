@@ -1,0 +1,12 @@
+#Descriptive statistics
+
+
+> vars <- c("mpg", "hp", "wt")
+> head(mtcars[vars])
+
+#The summary() function provides the minimum, maximum, quartiles, and the mean for numerical variables and frequencies for factors and logical vectors.
+> summary(mtcars[vars])
+
+#where x is your data frame (or matrix) and FUN is an arbitrary function. If options are present, they’re passed to FUN. Typical functions that you can plug in here are mean
+#sd, var, min, max, median, length, range, and quantile. The function fivenum() returns Tukey’s five-number summary (minimum, lower-hinge, median, upper-hinge,and maximum).
+sapply(x, FUN, options)
