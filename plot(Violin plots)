@@ -1,0 +1,19 @@
+#A violin plot 
+
+
+#It is a combination of a box plot and a kernel density plot
+vioplot(x1,x2,..., names=, col=)
+
+
+
+#vioplot() function requires you to separate the groups to be plotted into separate variables
+#Here, the white dot is the median, the black boxes range from the lower to the upper quartile, and the thin black lines represent the whiskers. The outer shape provides 
+the kernel density plots.
+library(vioplot)
+x1 <- mtcars$mpg[mtcars$cyl==4]
+x2 <- mtcars$mpg[mtcars$cyl==6]
+x3 <- mtcars$mpg[mtcars$cyl==8]
+vioplot(x1, x2, x3,
+names=c("4 cyl", "6 cyl", "8 cyl"),
+col="gold")
+title("Violin Plots of Miles Per Gallon")
