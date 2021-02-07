@@ -1,2 +1,7 @@
 In R, factors are used to work with categorical variables, variables that have a fixed and known set of possible values. ....
 Historically, factors were much easier to work with than characters. As a result, many of the functions in base R automatically convert characters to factors.
+
+
+#because the base installation doesn't include the skew the kurtosis,you need to calculate by the formulas
+skew <- sum((x-m)^3/s^3)/n
+kurt <- sum((x-m)^4/s^4)/n - 3
