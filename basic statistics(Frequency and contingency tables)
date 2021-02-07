@@ -1,0 +1,15 @@
+#Frequency and contingency tables
+
+#ONE-WAY TABLES
+library(vcd)
+mytable <- with(Arthritis, table(Improved))
+
+#turn these frequencies into proportions with prop.table():
+prop.table(mytable)
+
+
+#TWO-WAY TABLES
+#the variables to be cross-classified appear on the right of the formula (that is, to the right of the ~) separated by + signs.
+If a variable is included on the left side of the formula,it’s assumed to be a vector of frequencies (useful if the data have already been tabulated).
+> mytable <- xtabs(~ Treatment+Improved, data=Arthritis)
+> mytable
