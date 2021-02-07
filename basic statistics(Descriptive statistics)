@@ -57,5 +57,11 @@ describe(mtcars[vars])
 > by(mtcars[vars], mtcars$am, dstats)
 
 #Summary statistics by group using summaryBy() in the doBy package
+#Variables on the left of the ~ are the numeric variables to be analyzed and variables on the right are categorical grouping variables
+#The function can be any built-in or usercreated R function.
 > library(doBy)
+
+#Summary statistics by group using describe.by() in the psych package
+> library(psych)
+> describe.by(mtcars[vars], mtcars$am)
 > summaryBy(mpg+hp+wt~am, data=mtcars, FUN=mystats)
