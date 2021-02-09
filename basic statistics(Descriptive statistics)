@@ -65,3 +65,4 @@ describe(mtcars[vars])
 > library(psych)
 > describe.by(mtcars[vars], mtcars$am)
 > summaryBy(mpg+hp+wt~am, data=mtcars, FUN=mystats)
+  
