@@ -5,3 +5,19 @@
 > cor(states, method="spearman")
 
 #Kendall’s Tau is also a nonparametric measure of rank correlation.
+
+#PARTIAL CORRELATIONS
+#A partial correlation is a correlation between two quantitative variables, controlling for one or more other quantitative variables.
+> library(ggm)
+
+#partial correlation of population and murder rate, controlling for income, illiteracy rate, and HS graduation rate
+> pcor(c(1,5,2,3,6), cov(states)
+
+#Testing correlations for significance
+> cor.test(states[,3], states[,5])
+
+#Correlation matrix and tests of significance via corr.test
+#The use= options can be "pairwise" or "complete" (for pairwise or listwise deletion of missing values, respectively). The method= option is "pearson" (the default),
+"spearman", or "kendall".
+> library(psych)
+> corr.test(states, use="complete")
