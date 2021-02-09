@@ -1,0 +1,10 @@
+
+chisq.test()
+
+> library(vcd)
+> mytable <- xtabs(~Treatment+Improved, data=Arthritis)
+> chisq.test(mytable)
+
+
+> mytable <- xtabs(~Treatment+Improved, data=Arthritis)
+> fisher.test(mytable)
