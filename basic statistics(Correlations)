@@ -1,0 +1,7 @@
+#The Pearson product moment correlation assesses the degree of linear relationship between two quantitative variables.
+> cor(states)
+
+#Spearman’s Rank Order correlation coefficient assesses the degree of relationship between two rank-ordered variables. 
+> cor(states, method="spearman")
+
+#Kendall’s Tau is also a nonparametric measure of rank correlation.
