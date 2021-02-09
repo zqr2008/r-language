@@ -13,3 +13,26 @@ prop.table(mytable)
 If a variable is included on the left side of the formula,it’s assumed to be a vector of frequencies (useful if the data have already been tabulated).
 > mytable <- xtabs(~ Treatment+Improved, data=Arthritis)
 > mytable
+
+#generate marginal frequencies and proportions using the margin.table()and prop.table() functions. For row sums and row proportions
+#The index (1) refers to the first variable in the table() statement.
+#represented the first variable when creating the table
+> margin.table(mytable, 1)
+> prop.table(mytable, 1)
+
+#Cell proportions are obtained with this statement:
+> prop.table(mytable)
+
+#addmargins() function to add marginal sums to these tables.
+> addmargins(mytable)
+> addmargins(prop.table(mytable))
+
+#adds a sum column alone.
+> addmargins(prop.table(mytable, 1), 2)
+
+#adds a sum row.
+> addmargins(prop.table(mytable, 2), 1)
+
+#Better method
+> library(gmodels)
+> CrossTable(Arthritis$Treatment, Arthritis$Improved)
