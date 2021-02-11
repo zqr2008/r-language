@@ -1,0 +1,10 @@
+#Independent t-test
+#UScrime is a dataframe contain the varibles 
+#where Prob is numeric and So is a dichotomous variable
+#You can add a var.equal=TRUE option to specify equal variances and a pooled variance estimate
+> library(MASS)
+> t.test(Prob ~ So, data=UScrime)
+
+#another way
+#
+t.test(y1, y2)
