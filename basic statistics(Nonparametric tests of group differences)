@@ -1,0 +1,14 @@
+#Wilcoxon rank sum test (more popularly known as the Mann–Whitney U test) to assess whether the observations are sampled from the same probability distribution
+#where y is numeric and x is a dichotomous variable
+wilcox.test(y ~ x, data)
+
+#y1 and y2 are the outcome variables for each group.
+wilcox.test(y1,y2)
+
+
+> with(UScrime, by(Prob, So, median))
+> wilcox.test(Prob ~ So, data=UScrime)
+
+#The Wilcoxon signed rank test provides a nonparametric alternative to the dependent sample t-test. 
+> sapply(UScrime[c("U1","U2")], median)
+> with(UScrime, wilcox.test(U1, U2, paired=TRUE))
