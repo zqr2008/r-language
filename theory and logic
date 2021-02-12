@@ -11,3 +11,8 @@ The Cochran-Mantel-Haenszel test computes an odds ratio taking into account a co
 The test creates a series of two-by-two tables showing the association between a risk factor and outcome at different levels of a confounding factor, 
 and computes a weighted average of the odds ratios across the strata (i.e. across subgroups or levels of the confounder).
 
+#Comparing more than two groups
+If you can’t meet the assumptions of ANOVA designs, you can use nonparametric methods to evaluate group differences. If the groups are independent, a Kruskal–
+Wallis test will provide you with a useful approach. If the groups are dependent (for example, repeated measures or randomized block design), the Friedman test is more
+appropriate.
+
