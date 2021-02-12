@@ -12,3 +12,23 @@ wilcox.test(y1,y2)
 #The Wilcoxon signed rank test provides a nonparametric alternative to the dependent sample t-test. 
 > sapply(UScrime[c("U1","U2")], median)
 > with(UScrime, wilcox.test(U1, U2, paired=TRUE))
+
+
+#If the groups are independent for more than two groups, a Kruskal–Wallis test will provide you with a useful approach.
+#where y is a numeric outcome variable and A is a grouping variable with two or more levels.
+kruskal.test(y ~ A, data)
+> kruskal.test(Illiteracy ~ state.region, data=states)
+
+# more elegant approach is to apply a multiple-comparisons procedure that computes all pairwise
+comparisons, while controlling the type I error rate (the probability of finding a difference
+that isn’t there). I have created a function called wmc() that can be used for
+this purpose.
+#The source() function downloads and executes the R script defining the wmc() function
+#use adjustment method developed by Holm
+> source("http://www.statmethods.net/RiA/wmc.txt")
+> states <- data.frame(state.region, state.x77)
+> wmc(Illiteracy ~ state.region, data=states, method="holm")
+
+
+#If the groups are dependent (for example, repeated measures or randomized block design), the Friedman test is more appropriate.
+
