@@ -12,3 +12,12 @@
 xlab="Height (in inches)",
 ylab="Weight (in lbs)")
 > lines(women$height,fitted(fit2))
+
+#Scatter plot of height by weight, with linear and smoothed fits, and marginal box plots
+#the scatterplot() in car package provides a simple and convenient method of plotting a bivariate relationship
+library(car)
+scatterplot(weight ~ height, data=women,
+spread=FALSE, smoother.args=list(lty=2), pch=19,
+main="Women Age 30-39",
+xlab="Height (inches)",
+ylab="Weight (lbs.)")
