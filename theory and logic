@@ -16,3 +16,19 @@ If you can’t meet the assumptions of ANOVA designs, you can use nonparametric 
 Wallis test will provide you with a useful approach. If the groups are dependent (for example, repeated measures or randomized block design), the Friedman test is more
 appropriate.
 
+
+#Linear vs. nonlinear models
+Note that polynomial equation still fits under the rubric of linear regression. It’s linear because the equation involves a weighted sum of predictor variables (height
+and height-squared in this case). Even a model such as
+
+Yi = β0 × logX1 + β2 × sinX2
+
+would be considered a linear model (linear in terms of the parameters) and fit with the formula
+
+
+Y ~ log(X1) + sin(X2)
+In contrast, here’s an example of a truly nonlinear model:
+
+Yi = β0 + β1 ex/β2
+
+Nonlinear models of this form can be fit with the nls() function.
