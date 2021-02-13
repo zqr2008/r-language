@@ -1,0 +1,6 @@
+#creat a 2*2 plot struction
+par(mfrow=c(2, 2))
+
+#clean plot
+dev.off()
+
