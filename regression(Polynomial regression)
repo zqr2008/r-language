@@ -15,6 +15,9 @@ ylab="Weight (in lbs)")
 
 #Scatter plot of height by weight, with linear and smoothed fits, and marginal box plots
 #the scatterplot() in car package provides a simple and convenient method of plotting a bivariate relationship
+#The spread=FALSE options suppress spread and asymmetry information
+#The smoother.args=list(lty=2)option specifies that the loess fit be rendered as a dashed line. 
+#The pch=19 options display points as filled circles (the default is open circles).
 library(car)
 scatterplot(weight ~ height, data=women,
 spread=FALSE, smoother.args=list(lty=2), pch=19,
