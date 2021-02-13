@@ -8,7 +8,26 @@ states <- as.data.frame(state.x77[,c("Murder", "Population",
 #Examining bivariate relationships
 > cor(states)
 
-
+#Scatter plot matrix of dependent and independent variables for the states data, including linear and smoothed fits,
+and marginal distributions (kernel-density plots and rug plots)
 > library(car)
 > scatterplotMatrix(states, spread=FALSE, smoother.args=list(lty=2),
 main="Scatter Plot Matrix")
+
+
+> fit <- lm(Murder ~ Population + Illiteracy + Income + Frost, data=states)
+> summary(fit)
+
+
+#Multiple linear regression with interactions
+> fit <- lm(mpg ~ hp + wt + hp:wt, data=mtcars)
+> summary(fit)
+
+
+#visualize interactions using the effect() function in the effects package.
+#hp:wt:quoted model term to plot
+#fit:the fitted model returned by lm()
+#list:a list specifying the variables to be set to constant values and the values to employ
+#multiline=TRUE option superimposes the lines being plotted.
+library(effects)
+plot(effect("hp:wt", fit,, list(wt=c(2.2,3.2,4.2))), multiline=TRUE)
