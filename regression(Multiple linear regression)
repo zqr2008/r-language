@@ -1,0 +1,14 @@
+#Multiple linear regression
+
+
+#Because the lm() function requires a data frame (and the state.x77 dataset is contained in a matrix), you can simplify your life with the following code:
+states <- as.data.frame(state.x77[,c("Murder", "Population",
+"Illiteracy", "Income", "Frost")])
+
+#Examining bivariate relationships
+> cor(states)
+
+
+> library(car)
+> scatterplotMatrix(states, spread=FALSE, smoother.args=list(lty=2),
+main="Scatter Plot Matrix")
