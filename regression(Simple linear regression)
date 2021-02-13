@@ -1,0 +1,22 @@
+#Simple linear regression
+
+
+#build a simple linear regression
+#show all the information of the model
+> fit <- lm(weight ~ height, data=women)
+> summary(fit)
+
+#fitted() shows all the predicted result
+#residuals=fitted()-actual value
+> women$weight
+> fitted(fit)
+> residuals(fit)
+
+#plot the actual value
+#add the line of model
+> plot(women$height,women$weight,
+xlab="Height (in inches)",
+ylab="Weight (in pounds)")
+> abline(fit)
+
+
