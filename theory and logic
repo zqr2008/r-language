@@ -32,3 +32,6 @@ In contrast, here’s an example of a truly nonlinear model:
 Yi = β0 + β1 ex/β2
 
 Nonlinear models of this form can be fit with the nls() function.
+
+
+#Although higher polynomials are possible in regression, terms higher than cubic are unnecessary.
