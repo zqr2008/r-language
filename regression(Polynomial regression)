@@ -1,0 +1,14 @@
+#Polynomial regression
+
+
+#I() means Elements within the parentheses are interpreted arithmetically.
+#improve your prediction using a regression with a quadratic term (that is, X 2).
+>fit2 <- lm(weight ~ height + I(height^2), data=women)
+>summary(fit2)
+
+
+#The amount of variance accounted for has increased to 99.9%
+> plot(women$height,women$weight,
+xlab="Height (in inches)",
+ylab="Weight (in lbs)")
+> lines(women$height,fitted(fit2))
