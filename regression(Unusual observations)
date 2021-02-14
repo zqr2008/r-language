@@ -1,0 +1,17 @@
+#Outliers
+
+#A rough rule of thumb is that standardized residuals that are larger than 2 or less than –2 are worth attention
+> library(car)
+> outlierTest(fit)
+
+#an observation with a hat value greater than 2 or 3 times the average hat value should be examined
+hat.plot <- function(fit) {
+p <- length(coefficients(fit))
+n <- length(fitted(fit))
+plot(hatvalues(fit), main="Index Plot of Hat Values")
+abline(h=c(2,3)*p/n, col="red", lty=2)
+identify(1:n, hatvalues(fit), names(hatvalues(fit)))
+}
+hat.plot(fit)
+
+#Influential observations
