@@ -1,0 +1,24 @@
+#an example
+#Normality—If the dependent variable is normally distributed for a fixed set of predictor values, then the residual values should be normally distributed with a
+mean of 0. The Normal Q-Q plot (upper right) is a probability plot of the standardized residuals against the values that would be expected under normality. If
+you’ve met the normality assumption, the points on this graph should fall on the straight 45-degree line. 
+#Independence—You can’t tell if the dependent variable values are independent from these plots. You have to use your understanding of how the data was collected.
+There’s no a priori reason to believe that one woman’s weight influences another woman’s weight. If you found out that the data were sampled from families,
+you might have to adjust your assumption of independence.
+#Linearity—If the dependent variable is linearly related to the independent variables, there should be no systematic relationship between the residuals and the
+predicted (that is, fitted) values. In other words, the model should capture all the systematic variance present in the data, leaving nothing but random noise.
+In the Residuals vs. Fitted graph (upper left), you see clear evidence of a curved relationship, which suggests that you may want to add a quadratic term to the
+regression.
+#Homoscedasticity—If you’ve met the constant variance assumption, the points in the Scale-Location graph (bottom left) should be a random band around a horizontal
+line. You seem to meet this assumption.
+#Residuals vs. Leverage graph provides information about individual observations that you may wish to attend to. The graph identifies outliers,
+high-leverage points, and influential observations. Specifically:
+    #An outlier is an observation that isn’t predicted well by the fitted regression model (that is, has a large positive or negative residual).
+    #An observation with a high leverage value has an unusual combination of predictor values. That is, it’s an outlier in the predictor space. 
+    The dependent variable value isn’t used to calculate an observation’s leverage.
+    #An influential observation is an observation that has a disproportionate impact on the determination of the model parameters. Influential observations are identified
+     using a statistic called Cook’s distance, or Cook’s D.
+
+fit <- lm(weight ~ height, data=women)
+par(mfrow=c(2,2))
+plot(fit)
