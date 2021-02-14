@@ -92,3 +92,9 @@ points form a random horizontal band around a horizontal line of best fit. If yo
 > library(gvlma)
 > gvmodel <- gvlma(fit)
 > summary(gvmodel)
+
+#Multicollinearity
+#As a general rule, indicates a multicollinearity problem
+> library(car)
+> vif(fit)
+> sqrt(vif(fit))
