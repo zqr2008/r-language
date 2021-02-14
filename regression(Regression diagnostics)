@@ -8,7 +8,7 @@ you might have to adjust your assumption of independence.
 #Linearity—If the dependent variable is linearly related to the independent variables, there should be no systematic relationship between the residuals and the
 predicted (that is, fitted) values. In other words, the model should capture all the systematic variance present in the data, leaving nothing but random noise.
 In the Residuals vs. Fitted graph (upper left), you see clear evidence of a curved relationship, which suggests that you may want to add a quadratic term to the
-regression.
+regression.refer to:https://www.jianshu.com/p/c9022affd8b9
 #Homoscedasticity—If you’ve met the constant variance assumption, the points in the Scale-Location graph (bottom left) should be a random band around a horizontal
 line. You seem to meet this assumption.
 #Residuals vs. Leverage graph provides information about individual observations that you may wish to attend to. The graph identifies outliers,
@@ -17,8 +17,78 @@ high-leverage points, and influential observations. Specifically:
     #An observation with a high leverage value has an unusual combination of predictor values. That is, it’s an outlier in the predictor space. 
     The dependent variable value isn’t used to calculate an observation’s leverage.
     #An influential observation is an observation that has a disproportionate impact on the determination of the model parameters. Influential observations are identified
-     using a statistic called Cook’s distance, or Cook’s D.
+     using a statistic called Cook’s distance, or Cook’s D.(在线性回归中，库克距离(Cook's Distance)描述了单个样本对整个回归模型的影响程度。
+     库克距离越大，说明影响越大。库克距离也可以用来检测异常点。在最理想的情况下，每个样本对模型的影响是相等的。如某个样本的库克距离非常大，我们可以视为这个样本是异常点(outlier)。
+     通常来说，若库克距离大于1，我们就认为这个点是异常点。也有人把这个阈值设置为4/n。)
 
 fit <- lm(weight ~ height, data=women)
 par(mfrow=c(2,2))
 plot(fit)
+
+#the diagnostic plots for the quadratic fit.
+#Observation 15 appears to be influential (based on a large Cook’s D value), and deleting it has an impact on the parameter estimates. 
+fit2 <- lm(weight ~ height + I(height^2), data=women)
+par(mfrow=c(2,2))
+plot(fit2)
+#dropping both observations 13 and 15 produces a better model fit:
+newfit <- lm(weight~ height + I(height^2), data=women[-c(13,15),])
+
+#apply the basic approach to the states dataset:
+states <- as.data.frame(state.x77[,c("Murder", "Population",
+"Illiteracy", "Income", "Frost")])
+fit <- lm(Murder ~ Population + Illiteracy + Income + Frost, data=states)
+par(mfrow=c(2,2))
+plot(fit)
+
+
+#The qqPlot() function provides a more accurate method of assessing the normality assumption
+library(car)
+states <- as.data.frame(state.x77[,c("Murder", "Population",
+"Illiteracy", "Income", "Frost")])
+fit <- lm(Murder ~ Population + Illiteracy + Income + Frost, data=states)
+qqPlot(fit, labels=row.names(states), id.method="identify",
+simulate=TRUE, main="Q-Q Plot")
+
+#Function for plotting studentized residuals
+#rug() use a "|" to show the frequencey
+residplot <- function(fit, nbreaks=10) {
+z <- rstudent(fit)
+hist(z, breaks=nbreaks, freq=FALSE,
+xlab="Studentized Residual",
+main="Distribution of Errors")
+rug(jitter(z), col="brown")
+curve(dnorm(x, mean=mean(z), sd=sd(z)),
+add=TRUE, col="blue", lwd=2)
+lines(density(z)$x, density(z)$y,
+col="red", lwd=2, lty=2)
+legend("topright",
+legend = c( "Normal Curve", "Kernel Density Curve"),
+lty=1:2, col=c("blue","red"), cex=.7)
+}
+residplot(fit)
+
+#INDEPENDENCE OF ERRORS
+#time series data often display autocorrelation
+#The nonsignificant p-value (p=0.282) suggests a lack of autocorrelation and, conversely,an independence of errors.
+> durbinWatsonTest(fit)
+
+#LINEARITY
+#partial residual plots 
+#refer to: http://www.360doc.com/content/20/0428/16/69696485_909034169.shtml
+#Nonlinearity in any of these plots suggests that you may not have adequately modeled the functional form of that predictor
+in the regression.
+> library(car)
+> crPlots(fit)
+
+#HOMOSCEDASTICITY
+#The score test is nonsignificant (p = 0.19), suggesting that you’ve met the constant variance assumption. You can also see this in the spread-level plot. The
+points form a random horizontal band around a horizontal line of best fit. If you’d violated the assumption, you’d expect to see a nonhorizontal line.
+> library(car)
+> ncvTest(fit)
+
+
+#Global validation of linear model assumption
+#!!!!important!!!!
+> library(gvlma)
+> gvmodel <- gvlma(fit)
+> summary(gvmodel)
