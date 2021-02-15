@@ -4,6 +4,8 @@
 > library(car)
 > outlierTest(fit)
 
+
+#High-leverage points
 #an observation with a hat value greater than 2 or 3 times the average hat value should be examined
 hat.plot <- function(fit) {
 p <- length(coefficients(fit))
@@ -15,3 +17,24 @@ identify(1:n, hatvalues(fit), names(hatvalues(fit)))
 hat.plot(fit)
 
 #Influential observations
+#Influential observations have a disproportionate impact on the values of the model parameters
+#Cook’s D values greater than 4/(n – k – 1), where n is the sample size and k is the number of predictor variables, indicate influential observations.
+#what stands out indicates for influential
+cutoff <- 4/(nrow(states)-length(fit$coefficients)-2)
+plot(fit, which=4, cook.levels=cutoff)
+abline(h=cutoff, lty=2, col="red")
+
+#Cook’s D plots can help identify influential observations, but they don’t provide information about how these observations affect the model. Added-variable plots can
+help in this regard
+#added-variable plots refer to:https://search.lib.edu.eu.org/extdomains/sites.google.com/site/statisticsforspreadsheets/regression-modeling/added-variable-plot
+library(car)
+avPlots(fit, ask=FALSE, id.method="identify")
+
+#combine the information from outlier, leverage, and influence plots into one highly informative plot
+#Influence plot. States above +2 or below –2 on the vertical axis are considered outliers. States
+ above 0.2 or 0.3 on the horizontal axis have high leverage (unusual combinations of predictor values).
+ Circle size is proportional to influence. Observations depicted by large circles may have
+disproportionate influence on the parameter estimates of the model.
+library(car)
+influencePlot(fit, id.method="identify", main="Influence Plot",
+sub="Circle size is proportional to Cook's distance")
