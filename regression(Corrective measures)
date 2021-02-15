@@ -5,5 +5,12 @@
 #use the powerTransform() function in the car package to generate a maximum-likelihood estimation of the power λ most likely
 to normalize the variable Xλ.
 #The results suggest that you can normalize the variable Murder by replacing it with Murder0.6
+#the hypothesis that λ=1 can’t be rejected (p = 0.145), so there’s no strong evidence that a transformation is needed in this case.
 > library(car)
 > summary(powerTransform(states$Murder))
+
+#boxTidwell() function in the car package can be used to generate maximum-likelihood estimates of predictor powers that can improve linearity.
+> library(car)
+> boxTidwell(Murder~Population+Illiteracy,data=states)
+
+#Adding or deleting variables
