@@ -1,0 +1,9 @@
+#Deleting observations
+
+
+#Transforming variables
+#use the powerTransform() function in the car package to generate a maximum-likelihood estimation of the power λ most likely
+to normalize the variable Xλ.
+#The results suggest that you can normalize the variable Murder by replacing it with Murder0.6
+> library(car)
+> summary(powerTransform(states$Murder))
