@@ -41,4 +41,9 @@ plot(TukeyHSD(fit))
 simulate=TRUE, main="Q-Q Plot", labels=FALSE)
 
 #perform Bartlett’s test with this code
+#Bartlett’s test indicates that the variances in the five groups don’t differ significantly (p = 0.97).
 > bartlett.test(response ~ trt, data=cholesterol)
+
+#analysis of variance methodologies can be sensitive to the presence of outliers.
+> library(car)
+> outlierTest(fit)
