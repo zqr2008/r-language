@@ -1,0 +1,20 @@
+#One-way ANCOVA
+
+#The ANCOVA F tests indicate that (a) gestation time was related to birth weight, and (b) drug dosage was related to birth weight after controlling for gestation time.
+> data(litter, package="multcomp")
+> attach(litter)
+> table(dose)
+
+> aggregate(weight, by=list(dose), FUN=mean)
+
+> fit <- aov(weight ~ gesttime + dose)
+> summary(fit)
+
+#obtain adjusted group means
+> library(effects)
+> effect("dose", fit)
+
+#iuhMultiple comparisons employing user-supplied contrasts
+> library(multcomp)
+> contrast <- rbind("no drug vs. drug" = c(3, -1, -1, -1))
+> summary(glht(fit, linfct=mcp(dose=contrast)))
