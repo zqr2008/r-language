@@ -1,0 +1,44 @@
+#Fitting ANOVA models
+
+
+#One-way ANOVA
+
+> library(multcomp)
+> attach(cholesterol)
+> table(trt)
+> aggregate(response, by=list(trt), FUN=mean)
+> aggregate(response, by=list(trt), FUN=sd)
+> fit <- aov(response ~ trt)
+> summary(fit)
+#Plots group means and confidence intervals
+> library(gplots)
+> plotmeans(response ~ trt, xlab="Treatment", ylab="Response",
+main="Mean Plot\nwith 95% CI")
+> detach(cholesterol)
+
+#which treatment differ from which
+#Multiple comparisons
+#The first par statement rotates the axis labels
+#the second one increases the left margin area so that the labels fit
+TukeyHSD(fit)
+par(las=2)
+par(mar=c(5,8,4,2))
+plot(TukeyHSD(fit))
+
+#The glht() function in the multcomp package provides a much more comprehensive set of methods for multiple mean comparisons
+#the par statement increases the top margin to fit the letter array.
+#The level option in the cld() function provides the significance level to use (0.05, or 95% confidence in this case)
+#Groups (represented by box plots) that have the same letter don’t have significantly different means.
+> library(multcomp)
+> par(mar=c(5,4,6,2))
+> tuk <- glht(fit, linfct=mcp(trt="Tukey"))
+> plot(cld(tuk, level=.05),col="lightgrey")
+
+#Assessing test assumptions
+#In a one-way ANOVA, the dependent variable is assumed to be normally distributed and have equal variance in each group.
+> library(car)
+> qqPlot(lm(response ~ trt, data=cholesterol),
+simulate=TRUE, main="Q-Q Plot", labels=FALSE)
+
+#perform Bartlett’s test with this code
+> bartlett.test(response ~ trt, data=cholesterol)
