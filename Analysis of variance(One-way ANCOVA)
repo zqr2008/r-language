@@ -10,11 +10,32 @@
 > fit <- aov(weight ~ gesttime + dose)
 > summary(fit)
 
+#obtain adjusted group means—that is, the group means obtained after partialing out the effects of the covariate.
+> library(effects)
+> effect("dose", fit)
+
 #obtain adjusted group means
 > library(effects)
 > effect("dose", fit)
 
 #iuhMultiple comparisons employing user-supplied contrasts
+#The contrast c(3, -1, -1, -1) specifies a comparison of the first group with the average of the other three.
+#The hypothesis is tested with a t statistic (2.581 in this case), which is significant at the p < .05 level.
 > library(multcomp)
 > contrast <- rbind("no drug vs. drug" = c(3, -1, -1, -1))
 > summary(glht(fit, linfct=mcp(dose=contrast)))
+
+#Assessing test assumptions
+#ANCOVA designs make the same normality and homogeneity of variance assumptions
+#In addition, standard ANCOVA designs assumes homogeneity of regression slopes
+#The interaction is nonsignificant, supporting the assumption of equality of slopes.
+> library(multcomp)
+> fit2 <- aov(weight ~ gesttime*dose, data=litter)
+> summary(fit2)
+
+#Visualizing the results
+> library(HH)
+> ancova(weight ~ gesttime + dose, data=litter)
+
+
+
