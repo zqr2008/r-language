@@ -1,0 +1,31 @@
+#Two-way ANOVA
+
+
+#table statement indicates that you have a balanced design
+> attach(ToothGrowth)
+> table(supp, dose)
+
+
+> aggregate(len, by=list(supp, dose), FUN=mean)
+
+#The dose variable is converted to a factor so that the aov() function will treat it as a grouping variable，rather than a numeric covariate.
+> dose <- factor(dose)
+> fit <- aov(len ~ supp*dose)
+> summary(fit)
+
+#use the interaction.plot() function to display the interaction in a two-way ANOVA.
+interaction.plot(dose, supp, len, type="b",
+col=c("red","blue"), pch=c(16, 18),
+main = "Interaction between Dose and Supplement Type")
+
+#better interaction plot
+library(gplots)
+plotmeans(len ~ interaction(supp, dose, sep=" "),
+connect=list(c(1,3,5),c(2,4,6)),
+col=c("red", "darkgreen"),
+main = "Interaction Plot with 95% CIs",
+xlab="Treatment and Dose Combination")
+
+#interaction2wt() function in the HH package to produce a plot of both main effects and two-way interactions for any factorial design of any order
+library(HH)
+interaction2wt(len~supp*dose)
