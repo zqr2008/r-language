@@ -4,3 +4,9 @@ par(mfrow=c(2, 2))
 #clean plot
 dev.off()
 
+#import from spss dataset
+install.packages("memisc")  # 安装memisc包
+library(memisc)
+data0 = as.data.set(spss.system.file("spss-file.sav"))
+data = as.data.frame(data0)  # data即为所要的数据
+
