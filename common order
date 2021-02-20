@@ -7,7 +7,7 @@ dev.off()
 #import from spss dataset
 install.packages("memisc")  # 安装memisc包
 library(memisc)
-data0 = as.data.set(spss.system.file("spss-file.sav"))
+data0 = as.data.set(spss.system.file("C:/Users/Meripet/Desktop/2020529.sav"))
 data = as.data.frame(data0)  # data即为所要的数据
 
 #删除全空的行
