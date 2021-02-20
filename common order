@@ -10,3 +10,5 @@ library(memisc)
 data0 = as.data.set(spss.system.file("spss-file.sav"))
 data = as.data.frame(data0)  # data即为所要的数据
 
+#删除全空的行
+ data <- data[!apply(is.na(data) | data == "", 1, all),]
