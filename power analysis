@@ -1,0 +1,25 @@
+#t-tests
+#n is the sample size
+#d is the effect size defined as the standardized mean difference
+#sig.level is the significance level (0.05 is the default).
+#power is the power level.
+#type is a two-sample t-test ("two.sample"), a one-sample t-test ("one.sample"),
+or a dependent sample t-test ( "paired"). A two-sample test is the default.
+#alternative indicates whether the statistical test is two-sided ("two.sided")
+or one-sided ("less" or "greater"). A two-sided test is the default.
+pwr.t.test(n=, d=, sig.level=, power=, type=, alternative=)
+
+
+
+
+
+> library(pwr)
+> pwr.t.test(d=.8, sig.level=.05, power=.9, type="two.sample",
+alternative="two.sided")
+
+pwr.t.test(n=20, d=.5, sig.level=.01, type="two.sample",
+alternative="two.sided")
+
+
+#If the sample sizes for the two groups are unequal, the function
+pwr.t2n.test(n1=, n2=, d=, sig.level=, power=, alternative=)
