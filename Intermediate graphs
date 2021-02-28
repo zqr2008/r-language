@@ -26,3 +26,56 @@ library(car)
 scatterplotMatrix(~ mpg + disp + drat + wt, data=mtcars,
 spread=FALSE, smoother.args=list(lty=2),
 main="Scatter Plot Matrix via car Package")
+
+#High-density scatter plots
+set.seed(1234)
+n <- 10000
+c1 <- matrix(rnorm(n, mean=0, sd=.5), ncol=2)
+c2 <- matrix(rnorm(n, mean=3, sd=2), ncol=2)
+mydata <- rbind(c1, c2)
+mydata <- as.data.frame(mydata)
+
+with(mydata,
+plot(x, y, pch=19, main="Scatter Plot with 10,000 Observations"))
+
+with(mydata,
+smoothScatter(x, y, main="Scatter Plot Colored by Smoothed Densities"))
+
+#3D scatter plots
+library(scatterplot3d)
+attach(mtcars)
+s3d <-scatterplot3d(wt, disp, mpg,
+pch=16,
+highlight.3d=TRUE,
+type="h",
+main="3D Scatter Plot with Vertical Lines and Regression Plane")
+fit <- lm(mpg ~ wt+disp)
+s3d$plane3d(fit)
+
+#perform a similar function with scatter3d() in the car package:
+library(car)
+with(mtcars,
+scatter3d(wt, disp, mpg))
+
+
+scatter3d(wt, disp, mpg))
+#Spinning 3D scatter plots
+library(rgl)
+attach(mtcars)
+plot3d(wt, disp, mpg, col="red", size=5)
+names(mydata) <- c("x", "y")
+
+#Bubble plots
+#plot. Another approach is to create a 2D scatter plot and use the size of the plotted point to represent
+the value of the third variable.
+attach(mtcars)
+r <- sqrt(disp/pi)
+symbols(wt, mpg, circle=r, inches=0.30,
+fg="white", bg="lightblue",
+main="Bubble Plot with point size proportional to displacement",
+ylab="Miles Per Gallon",
+xlab="Weight of Car (lbs/1000)")
+text(wt, mpg, rownames(mtcars), cex=0.6)
+detach(mtcars)
+
+#Line charts
