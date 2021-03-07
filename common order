@@ -16,3 +16,7 @@ data = as.data.frame(data0)  # data即为所要的数据
 #按筛选条件建立新的mydata2
 library(dplyr)
 mydata2=mydata%>%filter(is.na(PC38.6)==FALSE)
+
+#编辑df
+> library(DataEditR)
+> data_edit(mydata)
