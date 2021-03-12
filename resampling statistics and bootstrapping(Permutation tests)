@@ -1,0 +1,18 @@
+1 Calculate the observed t-statistic, as in the parametric approach; call this t0.
+2 Place all 10 scores in a single group.
+3 Randomly assign five scores to Treatment A and five scores to Treatment B.
+4 Calculate and record the new observed t-statistic.
+5 Repeat steps 3–4 for every possible way of assigning five scores to Treatment A
+and five scores to Treatment B. There are 252 such possible arrangements.
+6 Arrange the 252 t-statistics in ascending order. This is the empirical distribution,
+based on (or conditioned on) the sample data.
+7 If t0 falls outside the middle 95% of the empirical distribution, reject the null
+hypothesis that the population means for the two treatment groups are equal at
+the 0.05 level of significance.
+
+
+#Permutation tests with the coin package
+#formula describes the relationship among variables to be tested. Examples are given in the table.
+#data identifies a data frame.
+#distribution specifies how the empirical distribution under the null hypothesis should be derived. Possible values are exact, asymptotic, and approximate.
+function_name( formula, data, distribution= )
