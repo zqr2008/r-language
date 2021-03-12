@@ -1,0 +1,11 @@
+1 Randomly select 10 observations from the sample, with replacement after each selection. Some observations may be selected more than once, and some may
+not be selected at all.
+2 Calculate and record the sample mean.
+3 Repeat the first two steps 1,000 times.
+4 Order the 1,000 sample means from smallest to largest.
+5 Find the sample means representing the 2.5th and 97.5th percentiles. In this case, it’s the 25th number from the bottom and top. These are your 95% confidence
+limits.
+
+
+
+Bootstrapping with the boot package
