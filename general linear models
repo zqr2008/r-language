@@ -1,1 +1,24 @@
+> data(Affairs, package="AER")
+> summary(Affairs)
 
+> Affairs$ynaffair[Affairs$affairs > 0] <- 1
+> Affairs$ynaffair[Affairs$affairs == 0] <- 0
+
+
+> Affairs$ynaffair <- factor(Affairs$ynaffair,
+levels=c(0,1),
+labels=c("No","Yes"))
+> table(Affairs$ynaffair)
+
+> fit.full <- glm(ynaffair ~ gender + age + yearsmarried + children +
+religiousness + education + occupation +rating,
+data=Affairs, family=binomial())
+> summary(fit.full)
+
+
+> fit.reduced <- glm(ynaffair ~ age + yearsmarried + religiousness +
+rating, data=Affairs, family=binomial())
+> summary(fit.reduced)
+
+#you can use the anova() function to compare the reduced one
+> anova(fit.reduced, fit.full, test="Chisq")
