@@ -22,3 +22,24 @@ rating, data=Affairs, family=binomial())
 
 #you can use the anova() function to compare the reduced one
 > anova(fit.reduced, fit.full, test="Chisq")
+
+
+#exponentiate them to put the results on an odds scal
+> exp(coef(fit.reduced))
+
+#exp(confint(fit.reduced)) would print 95% confidence intervals for each of the coefficients on an odds scale.
+
+
+> testdata <- data.frame(rating=c(1, 2, 3, 4, 5), age=mean(Affairs$age),
+yearsmarried=mean(Affairs$yearsmarried),
+religiousness=mean(Affairs$religiousness))
+> testdata
+
+> testdata$prob <- predict(fit.reduced, newdata=testdata, type="response")
+
+
+overdispersion=Residual deviance/Residual df, is considerably larger than 1, you have evidence of overdispersion
+> deviance(fit.reduced)/df.residual(fit.reduced)
+
+pchisq(summary(fit.od)$dispersion * fit$df.residual,
+fit$df.residual, lower = F)
